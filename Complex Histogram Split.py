@@ -57,6 +57,11 @@ print("Highlights: {}".format(highlights))
 print("Whites: {}".format(whites))
 
 # Plot the histograms for grayscale image and each channel
+fig, axs = plt.subplots(2, 2, figsize=(10, 10))
+axs[0, 0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+axs[0, 0].set_title('Original Image')
+axs[0, 0].axis('off')
+
 plt.subplot(2, 2, 1)
 plt.plot(hist_gray)
 plt.title("Grayscale Image")
