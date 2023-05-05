@@ -21,11 +21,9 @@ class HistogramAnalysis(tk.Tk):
         menubar.add_cascade(label="File", menu=file_menu)
 
         # Add "Open Image" action to the "File" menu
-        open_image_action = tk.Menu(file_menu)
         file_menu.add_command(label="Open Image", command=self.open_image)
 
         # Add "Exit" action to the "File" menu
-        exit_action = tk.Menu(file_menu)
         file_menu.add_command(label="Exit", command=self.quit)
 
         # Create a frame for the canvas and toolbar
@@ -63,7 +61,7 @@ class ProcessImage:
         hist = cv2.calcHist([gray], [0], None, [256], [0, 256])
 
         # Create a figure and subplots
-        fig, axs = plt.subplots(2, 2, figsize=(20, 20))
+        fig, axs = plt.subplots(2, 2, figsize=(10, 10))
 
         # Plot the original image
         axs[0, 0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
