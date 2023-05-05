@@ -12,17 +12,25 @@ class HistogramAnalysis(tk.Tk):
         self.title("Histogram Analysis")
         self.geometry('1000x1000')
 
-        # Create a toolbar frame
-        self.toolbar_frame = tk.Frame(self)
-        self.toolbar_frame.pack(side=tk.TOP, fill=tk.X)
+        # Create a menu bar
+        menubar = tk.Menu(self)
+        self.config(menu=menubar)
 
-        # Button to open the file dialog
-        self.open_file_button = tk.Button(self.toolbar_frame, text="Open Image", command=self.open_image)
-        self.open_file_button.pack(side=tk.LEFT)
+        # Create a "File" menu
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="File", menu=file_menu)
 
-        # Button to exit the program
-        self.exit_button = tk.Button(self.toolbar_frame, text="Exit", command=self.quit)
-        self.exit_button.pack(side=tk.LEFT)
+        # Add "Open Image" action to the "File" menu
+        open_image_action = tk.Menu(file_menu)
+        file_menu.add_command(label="Open Image", command=self.open_image)
+
+        # Add "Exit" action to the "File" menu
+        exit_action = tk.Menu(file_menu)
+        file_menu.add_command(label="Exit", command=self.quit)
+
+        # Create a frame for the canvas and toolbar
+        self.content_frame = tk.Frame(self)
+        self.content_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=True)
 
     def open_image(self):
         # Open a file dialog to select an image file
@@ -31,13 +39,12 @@ class HistogramAnalysis(tk.Tk):
         # Load the image
         img = cv2.imread(self.filename)
 
-        # Clear any existing widgets in the main window
-        for widget in self.winfo_children():
-            if widget != self.toolbar_frame:
-                widget.destroy()
+        # Clear any existing widgets in the content frame
+        for widget in self.content_frame.winfo_children():
+            widget.destroy()
 
         # Create an instance of ProcessImage and pass the image
-        self.process_image_window = ProcessImage(self, img)
+        self.process_image_window = ProcessImage(self.content_frame, img)
 
 
 class ProcessImage:
