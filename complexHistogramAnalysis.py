@@ -121,6 +121,28 @@ class ProcessImage:
         axs[1, 1].set_xlabel("Pixel Intensity")
         axs[1, 1].set_ylabel("Number of Pixels")
 
+        # Plot the combined color histogram
+        axs[1, 2].set_title('Combined Color Histogram')
+        axs[1, 2].set_xlabel('Pixel Value')
+        axs[1, 2].set_ylabel('Frequency')
+        axs[1, 2].grid('on')
+        axs[1, 2].plot(r_hist, color='r')
+        axs[1, 2].plot(g_hist, color='g')
+        axs[1, 2].plot(b_hist, color='b')
+        axs[1, 2].set_xlim([0, 256])
+
+        # Plot the overlaid histograms (red, green, blue, and gray)
+        axs[1, 3].set_title('Overlaid Histograms')
+        axs[1, 3].set_xlabel('Pixel Value')
+        axs[1, 3].set_ylabel('Frequency')
+        axs[1, 3].grid('on')
+        axs[1, 3].plot(r_hist, color='r', alpha=0.5, label='Red')
+        axs[1, 3].plot(g_hist, color='g', alpha=0.5, label='Green')
+        axs[1, 3].plot(b_hist, color='b', alpha=0.5, label='Blue')
+        axs[1, 3].plot(hist, color='gray', alpha=0.5, label='Gray')
+        axs[1, 3].set_xlim([0, 256])
+        axs[1, 3].legend()
+
         # Remove extra subplots
         axs[1, 2].axis('off')
         axs[1, 3].axis('off')
