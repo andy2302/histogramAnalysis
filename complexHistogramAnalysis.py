@@ -12,8 +12,11 @@ class HistogramAnalysis(tk.Tk):
     def __init__(self):
         super().__init__()
 
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
         self.title("Histogram Analysis")
-        self.geometry('1200x800')
+        self.geometry(f"{screen_width}x{screen_height}")
 
         # Create a menu bar
         menubar = tk.Menu(self)
