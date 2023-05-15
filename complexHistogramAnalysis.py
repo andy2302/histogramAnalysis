@@ -88,7 +88,7 @@ class ProcessImage:
         tk.Label(label_frame, text=f"Whites: {whites}").grid(row=0, column=4, padx=5)
 
         # Create a figure and subplots
-        fig, axs = plt.subplots(2, 4, figsize=(20, 10))
+        fig, axs = plt.subplots(2, 4, figsize=(20, 10))  # you can maximize or minimize histograms from here
 
         # Plot the original image
         axs[0, 0].imshow(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
@@ -146,9 +146,9 @@ class ProcessImage:
         axs[1, 3].set_xlim([0, 256])
         axs[1, 3].legend()
 
-        # Remove extra subplots
-        axs[1, 2].axis('off')
-        axs[1, 3].axis('off')
+        # Remove extra subplots, comment out for grids
+        # axs[1, 2].axis('off')
+        # axs[1, 3].axis('off')
 
         # Adjust the layout and show the plot
         plt.tight_layout()
